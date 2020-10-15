@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './style/style.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+//aqui es donde se renderiza toda la aplicación
 ReactDOM.render(
   <React.StrictMode>
     <App />
