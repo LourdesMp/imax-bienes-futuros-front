@@ -1,26 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+
+import Login from './components/entry/Login';
+import Register from './components/entry/register';
+import Home from './components/Home';
+import Profile from './components/Profile';
+import ListProjects from './components/emp/ListProjects';
+import NewProject from './components/emp/NewProject';
+import Tasacion from './components/emp/Tasacion';
+import NotFound from './components/NotFound';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  return(
+    //uso de router para poder alternar los componentes quee comforman las vistas
+    <Router>
+      <div className="conatiner">
+        <Switch>
+          <Route path="/" exact>
+              <Login/>
+          </Route>
+          <Route path="/registro" exact>
+              <Register/>
+          </Route>
+          <Route path="/home" exact>
+              <Home/>
+          </Route>
+          <Route path="/perfil" exact>
+              <Profile/>
+          </Route>
+          <Route path="/proyectos" exact>
+              <ListProjects/>
+          </Route>
+          <Route path="/nuevo" exact>
+              <NewProject/>
+          </Route>
+          <Route path="/tasacion" exact>
+              <Tasacion/>
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  )
+};
 
 export default App;
