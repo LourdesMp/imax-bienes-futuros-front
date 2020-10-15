@@ -1,0 +1,14 @@
+@import "./style-view/login";
+@import "./style-view/register";
+@import "./style-view/home";
+@import "./style-view/profile";
+@import "./style-view/listProjects";
+@import "./style-view/newProject";
+@import "./style-view/tasacion";
+
+
+//se importan todas las vistas scss, a este archivo para luego ser compilados a .css
+* {
+    margin: 0;
+    padding: 0;
+}
