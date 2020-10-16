@@ -5,8 +5,10 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { useFirebaseApp} from 'reactfire'
+
 import Login from './components/entry/Login';
-import Register from './components/entry/register';
+import Register from './components/entry/Register';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import ListProjects from './components/emp/ListProjects';
@@ -15,10 +17,12 @@ import Tasacion from './components/emp/Tasacion';
 import NotFound from './components/NotFound';
 
 function App() {
+  const firebase = useFirebaseApp();
+  console.log(firebase);
   return(
     //uso de router para poder alternar los componentes quee comforman las vistas
     <Router>
-      <div className="conatiner">
+      <div className="container">
         <Switch>
           <Route path="/" exact>
               <Login/>
