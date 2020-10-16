@@ -1,10 +1,14 @@
 import React from 'react';
 import img from '../assets/logo-imax.png';
 import { Link } from 'react-router-dom';
-
+import 'firebase/auth';
+import { useFirebaseApp} from 'reactfire';
+import { useHistory } from 'react-router-dom';
 
 const Header = () => {
-    
+    const history = useHistory();
+const firebase = useFirebaseApp();    
+ const signInOff = () => firebase.auth().signOut().then( history.push('/')).catch();
 
     
     return (
@@ -24,7 +28,7 @@ const Header = () => {
                     </ul>
                 </li>
                 <li>
-                <a href=' ' className="logOut" >Cerrar Sesion <i className="fas fa-sign-out-alt"/></a>
+                <a href=' ' onClick={signInOff} className="logOut" >Cerrar Sesion <i className="fas fa-sign-out-alt"/></a>
                 </li>
                 </ul>
             </nav>
