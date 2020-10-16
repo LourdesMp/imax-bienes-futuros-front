@@ -20,9 +20,8 @@ const Register = () => {
 
     const firebase = useFirebaseApp(); 
 
-    //metodo para capturar el valor de los inputs
+    //metodo para enviar el valor de los inputs
     const submit = () => {
-     
       const notValidEmail = email.trim() === '';
       const notValidPassword = password.trim() === '';
       if (notValidEmail || notValidPassword ) {
@@ -33,7 +32,7 @@ const Register = () => {
       } else {
          firebase.auth().createUserWithEmailAndPassword(email,password)
      .then(() => {
-      console.log('se ingresó');
+      console.log('se ingresó Register');
       history.push('/home');
      }).catch((error)=>{
       setError((prevState) => ({ ...prevState, message: error }));
