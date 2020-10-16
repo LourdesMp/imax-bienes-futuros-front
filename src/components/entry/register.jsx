@@ -22,16 +22,14 @@ const Register = () => {
 
     //metodo para capturar el valor de los inputs
     const submit = () => {
-      const exRegEmail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+     
       const notValidEmail = email.trim() === '';
       const notValidPassword = password.trim() === '';
-      if (notValidEmail || notValidPassword || exRegEmail) {
+      if (notValidEmail || notValidPassword ) {
         if (notValidEmail) setError((prevState) => ({ ...prevState, email: true }));
         else setError((prevState) => ({ ...prevState, email: false }));
         if (notValidPassword) setError((prevState) => ({ ...prevState, password: true }));
         else setError((prevState) => ({ ...prevState, password: false }));
-        if (exRegEmail) setError((prevState) => ({ ...prevState, email: true }));
-        else setError((prevState) => ({ ...prevState, email: false }));
       } else {
          firebase.auth().createUserWithEmailAndPassword(email,password)
      .then(() => {
