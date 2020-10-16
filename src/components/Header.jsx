@@ -2,7 +2,12 @@ import React from 'react';
 import img from '../assets/logo-imax.png';
 import { Link } from 'react-router-dom';
 
-const header = () => (
+
+const Header = () => {
+    
+
+    
+    return (
     <section className="home">
         <header>
             <img className="logo-imax" src={img}  alt="logo"/>
@@ -19,12 +24,12 @@ const header = () => (
                     </ul>
                 </li>
                 <li>
-                <a className="logOut">Cerrar Sesion <i className="fas fa-sign-out-alt"/></a>
+                <a href=' ' className="logOut" >Cerrar Sesion <i className="fas fa-sign-out-alt"/></a>
                 </li>
                 </ul>
             </nav>
         </header>
     </section>
-);
+)};
 
-export default header;
+export default Header;

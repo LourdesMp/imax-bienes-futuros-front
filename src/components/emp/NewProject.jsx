@@ -3,7 +3,7 @@ import Header from '../Header';
 
 
 
-const newProject = () => (
+const NewProject = () => (
     <section className="form-newProject">
         <Header/>
         <div class ="box-body">
@@ -29,4 +29,4 @@ const newProject = () => (
     
 );
 
-export default newProject;
+export default NewProject;

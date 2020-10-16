@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 
 
-const profile = () => (
+const Profile = () => (
     <section className="form-profile">
         <Header/>
         <div className ="box-body">
@@ -28,4 +28,4 @@ const profile = () => (
     
 );
 
-export default profile;
+export default Profile;

@@ -3,7 +3,7 @@ import Header from '../Header';
 
 
 
-const tasacion = () => (
+const Tasacion = () => (
     <section className="form-profile">
         <Header/>
         <div class ="box-body">
@@ -28,4 +28,4 @@ const tasacion = () => (
     
 );
 
-export default tasacion;
+export default Tasacion;

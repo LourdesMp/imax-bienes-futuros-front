@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 
 
-const home = () => (
+const Home = () => (
     <section className="home">
         <Header/>
         <div className = "box-body"> 
@@ -19,4 +19,4 @@ const home = () => (
     </section>
 );
 
-export default home;
+export default Home;
