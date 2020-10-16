@@ -88,13 +88,6 @@
   margin: 0 10px;
 }
 
-.login .logIn .formulary .reg_error_inner {
-  border-radius: 15px;
-  background: #b67373;
-  color: #ad0000;
-  font-size: 18px;
-}
-
 .login .logIn .formulary .btn-login {
   color: #fff;
   font-family: 'Roboto', sans-serif;
@@ -205,11 +198,28 @@
   margin: 0 10px;
 }
 
-.form-register .box-register .formulary .reg_error_inner {
-  border-radius: 15px;
-  background: #b67373;
-  color: #ad0000;
-  font-size: 18px;
+.form-register .box-register .formulary .box-user .errors::-webkit-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.form-register .box-register .formulary .box-user .errors:-ms-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.form-register .box-register .formulary .box-user .errors::-ms-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.form-register .box-register .formulary .box-user .errors::placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.form-register .box-register .formulary .box-error {
+  border: 2px solid red;
 }
 
 .form-register .box-register .formulary .btn-register {
