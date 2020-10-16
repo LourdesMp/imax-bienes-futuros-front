@@ -6,9 +6,9 @@ import { useFirebaseApp} from 'reactfire';
 import { useHistory } from 'react-router-dom';
 
 const Header = () => {
-    const history = useHistory();
+const history = useHistory();
 const firebase = useFirebaseApp();    
- const signInOff = () => firebase.auth().signOut().then( history.push('/')).catch();
+const signInOff = () => firebase.auth().signOut().then( history.push('/')).catch();
 
     
     return (
