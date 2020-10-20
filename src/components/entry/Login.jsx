@@ -1,69 +1,68 @@
-import React, {useState} from 'react';
+import React from 'react';
 import img from '../../assets/logo-imax.png';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import 'firebase/auth';
-import { useFirebaseApp} from 'reactfire';
+import { useForm } from '../../hooks/useForm';
+import  {useDispatch, useSelector} from 'react-redux';
+import {startLoginEmailPassword } from '../../actions/auth';
+import { removeError, setError } from '../../actions/ui';
 
 
 
 const Login = () => {
 
-    const history = useHistory();
-    
-    const [emailLogin, setEmailLogin] = useState ('');
+  const dispatch = useDispatch();
 
-    const [passwordLogin, setPasswordLogin ] = useState ('');
-    
-    const [error, setError] = useState({
-      email: false,
-      password: false,
-      message: '',
-    });
+  const {msgError} = useSelector ( state => state.ui);
+  console.log(msgError)
 
-    const firebase = useFirebaseApp(); 
+  const [formValues, handleInputChange] = useForm ({
+    emailLogin:'',
+    passwordLogin:''
 
-    //metodo para enviar a firebase el valor de los inputs y los valide
-    const sendLogin = () => {
-      const notValidEmail = emailLogin.trim() === '';
-      const notValidPassword = passwordLogin.trim() === '';
-      if (notValidEmail || notValidPassword ) {
-        if (notValidEmail) setError((prevState) => ({ ...prevState, emailLogin: true }));
-        else setError((prevState) => ({ ...prevState, emailLogin: false }));
-        if (notValidPassword) setError((prevState) => ({ ...prevState, passwordLogin: true }));
-        else setError((prevState) => ({ ...prevState, passwordLogin: false }));
-      } else {
-         firebase.auth().signInWithEmailAndPassword(emailLogin,passwordLogin)
-     .then(() => {
-      console.log('se ingresó Login');
-      history.push('/home');
-     }).catch((error)=>{
-      setError((prevState) => ({ ...prevState, message: error }));
-    });
+  })
 
-      }
+  const {emailLogin, passwordLogin} = formValues;
 
-
-    
-       
+  const handleLogin = (e) =>{ 
+    e.preventDefault();
+    if (isFormValidLogin()){
+      console.log(emailLogin, passwordLogin)
+      dispatch ( startLoginEmailPassword  (emailLogin, passwordLogin)) 
     }
-  
+ 
+  };
+
+  const isFormValidLogin = () => {
+    if (emailLogin.trim() === '') {
+      dispatch ( setError ('ingrese su email'));
+      return false;
+    }
+    else if (passwordLogin.trim() === '') {
+      dispatch ( setError ('ingrese su password'));
+      return false;
+    }
+
+    dispatch ( removeError ());
+    return true;
+
+}
+
     return (
     <section className="login">
-        <div className="logIn"> 
+        <form className="logIn" onSubmit= {handleLogin}> 
             <img className="logo-imax" alt="logo"  src={img}/>
             <div className="formulary" >
-                <div className={error.emailLogin ? 'box-user box-error' : 'box-user'}> <i className="user-icon fas fa-user"/> 
-                <input className= {error.emailLogin ? 'email user errors' : 'email user'} type="email" 
-                placeholder={error.emailLogin ? 'Campo requerido' : 'Ingrese el email'} onChange={ (e)=> setEmailLogin(e.target.value)} /> </div>
-                <div className={error.passwordLogin ? 'box-user box-error' : 'box-user'}> <i className="user-icon fas fa-lock"/> 
-                <input className= {error.emailLogin ? 'password user errors' : 'password user'} type="password"
-                placeholder={error.passwordLogin ? 'Campo requerido' : 'Ingrese la contraseña'} onChange={(e) => setPasswordLogin(e.target.value)}  />  </div>
-                { error.message && <span>{error.message}</span> }
-                <button type="submit"className= "btn-login" onClick={sendLogin}> Ingresar </button>
+                <div className={msgError ? 'box-user box-error' : 'box-user'}> <i className="user-icon fas fa-user"/> 
+                <input className= {msgError ? 'emailLogin user errors' : 'emailLogin user'} type="email" name="emailLogin"
+                placeholder={msgError ? 'Campo requerido' : 'Ingrese el email'} onChange={handleInputChange} value={emailLogin} /> </div>
+                <div className={msgError ? 'box-user box-error' : 'box-user'}> <i className="user-icon fas fa-lock"/> 
+                <input className= {msgError ? 'password user errors' : 'password user'} type="password" name="passwordLogin"
+                placeholder={msgError ? 'Campo requerido' : 'Ingrese la contraseña'} onChange={handleInputChange} value= {passwordLogin}  />  </div>
+                { msgError && (<span> {msgError}</span>) }
+                <button type="submit"className= "btn-login" > Ingresar </button>
             </div>
             <p className="p-Options">¿No tienes cuenta? <Link  to="/registro">Regístrate</Link> </p>
-        </div>
+        </form>
     </section>
     
 )};

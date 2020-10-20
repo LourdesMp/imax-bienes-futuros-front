@@ -2,13 +2,17 @@ import React from 'react';
 import img from '../assets/logo-imax.png';
 import { Link } from 'react-router-dom';
 import 'firebase/auth';
-import { useFirebaseApp} from 'reactfire';
-import { useHistory } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { startLogout } from '../actions/auth';
 
 const Header = () => {
-const history = useHistory();
-const firebase = useFirebaseApp();    
-const signInOff = () => firebase.auth().signOut().then( history.push('/')).catch();
+
+    const dispatch = useDispatch();
+    const handleLogout = (e) =>  {
+        e.preventDefault();
+        dispatch(startLogout());
+    }
 
     
     return (
@@ -28,7 +32,7 @@ const signInOff = () => firebase.auth().signOut().then( history.push('/')).catch
                     </ul>
                 </li>
                 <li>
-                <a href=' ' onClick={signInOff} className="logOut" >Cerrar Sesion <i className="fas fa-sign-out-alt"/></a>
+                <a href=' ' onClick={handleLogout} className="logOut" >Cerrar Sesion <i className="fas fa-sign-out-alt"/></a>
                 </li>
                 </ul>
             </nav>

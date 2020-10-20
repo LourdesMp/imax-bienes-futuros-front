@@ -56,8 +56,18 @@
                 color: rgb(175, 175, 175);
                 margin: 0 10px;
               }
+              .errors{
+                // box-shadow: 5px gray;
+                &::placeholder{
+                  color: red;
+                  font-weight: bold;
+                }
+              }  
              
         }
+        .box-error{
+            border: 2px solid red;
+          }
      
 
         .btn-login{
