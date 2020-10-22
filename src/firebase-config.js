@@ -19,9 +19,9 @@ firebase.initializeApp(firebaseConfig);
 
 // provider
 
-const db = firebase.firestore;
+const db = firebase.firestore();
 
 export {
   db, 
   firebase
-}
+};
