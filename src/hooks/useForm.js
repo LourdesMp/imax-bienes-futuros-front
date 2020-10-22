@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-
+//creacion de hooks para el formulario
 export const useForm = ( initialState = {} ) => {
     
     const [values, setValues] = useState(initialState);
