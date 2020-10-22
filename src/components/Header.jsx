@@ -9,6 +9,7 @@ import { startLogout } from '../actions/auth';
 const Header = () => {
 
     const dispatch = useDispatch();
+
     const handleLogout = (e) =>  {
         e.preventDefault();
         dispatch(startLogout());
@@ -21,14 +22,15 @@ const Header = () => {
             <img className="logo-imax" src={img}  alt="logo"/>
             <nav className= "menu">
                 <ul className="menubar">
-                <li>
+                <li >
                     <Link  to="/perfil">Perfil</Link>
                 </li>
                 <li>
-                    <Link  to="/home">Bienes Futuros</Link>
+                     <Link  to="/home"> Bienes Futuros</Link>
                     <ul>       
-                        <li> <Link  to="/proyectos">Proyectos</Link></li>
-                        <li> <Link  to="/nuevo">Nuevo Proyectos</Link></li>     
+                        <li > <Link  className="sub"to="/proyectos">Proyectos</Link></li>
+                        <li > <Link  className="sub"to="/nuevo">Nuevo Proyectos</Link></li> 
+                        <li > <Link className="sub"to="/tasacion">Nueva Tasacion</Link></li>    
                     </ul>
                 </li>
                 <li>
