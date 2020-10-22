@@ -10,19 +10,23 @@ export const PrivateRoute = ({
     ...rest
 }) => {
 
+    console.log(isAuthenticated)
+
+
+      //si el usuario esta logeado, ingresará al home y sino se redirecciona al home
     return (
         <Route { ...rest }
             component={ (props) => (
                 ( isAuthenticated )
                     ? ( <Component { ...props } /> )
-                    : ( <Redirect to="/auth/login" /> )
+                    : ( <Redirect to="/" /> )
             )}
         
         />
     )
-}
+};
 
 PrivateRoute.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     component: PropTypes.func.isRequired
-}
+};
