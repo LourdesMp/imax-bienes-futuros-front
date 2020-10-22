@@ -2,23 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
+  Redirect
 } from 'react-router-dom';
 
 import {useDispatch} from 'react-redux';
 
 import {firebase} from '../firebase-config';
+import { AuthRouter } from './AuthRouter';
 import { PrivateRoute } from './PrivateRouter';
 import {PublicRoute} from './PublicRoute';
-import Login from '../components/entry/Login';
-import Register from '../components/entry/Register';
-import Home from '../components/Home';
-import Profile from '../components/Profile';
-import ListProjects from '../components/emp/ListProjects';
-import NewProject from '../components/emp/NewProject';
-import Tasacion from '../components/emp/Tasacion';
-import NotFound from '../components/NotFound';
+
+
 import { login } from '../actions/auth';
+import { DashboardRouters } from './DashboardRouters';
+
+
 
 
 
@@ -26,6 +24,7 @@ export const AppRouter = () => {
   
   const dispatch = useDispatch();
 
+  //estados que permitiran diferenciar entre usuario logeado o no para vizualisacion de las rutas
   const [ checking, setChecking ] = useState(true);
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
@@ -37,16 +36,18 @@ export const AppRouter = () => {
 
           if ( user?.uid ) {
               dispatch( login( user.uid, user.displayName ) );
-              setIsLoggedIn( true );
+              setIsLoggedIn (true);
+          
           } else {
-              setIsLoggedIn( false );
+           console.log('hola');
+           setIsLoggedIn (false);
           }
 
           setChecking(false);
 
       });
       
-  }, [ dispatch, setChecking, setIsLoggedIn ]);
+  }, [ dispatch, setChecking, setIsLoggedIn]);
 
   if ( checking ) {
     return (
@@ -54,40 +55,17 @@ export const AppRouter = () => {
     )
 }
 
-
-
-
   return(
-    //uso de router para poder alternar los componentes quee comforman las vistas
+    //uso de router para poder alternar los componentes quee comforman las vistas en rutas publicas y privadas
 
     <Router>
       <div className="container">
         <Switch>
-          <PublicRoute path="/" isAuthenticated={isLoggedIn} exact>
-              <Login/>
-          </PublicRoute>
-          <PublicRoute path="/registro" isAuthenticated={isLoggedIn}  exact>
-              <Register/>
-          </PublicRoute>
-          <PrivateRoute  path="/home"    isAuthenticated={isLoggedIn}  exact>
-     
-              <Home/>
-          </PrivateRoute>
-          <PrivateRoute path="/perfil"    isAuthenticated={isLoggedIn}  exact>
-              <Profile/>
-          </PrivateRoute>
-          <PrivateRoute path="/proyectos"    isAuthenticated={isLoggedIn}  exact>
-              <ListProjects/>
-          </PrivateRoute>
-          <PrivateRoute path="/nuevo"    isAuthenticated={isLoggedIn}  exact>
-              <NewProject/>
-          </PrivateRoute>
-          <PrivateRoute path="/tasacion"    isAuthenticated={isLoggedIn}  exact>
-              <Tasacion/>
-          </PrivateRoute>
-          <Route>
-            <NotFound />
-          </Route>
+          <PublicRoute path="/"  isAuthenticated={isLoggedIn} component = {AuthRouter} exact />
+          <PublicRoute path="/register"  isAuthenticated={isLoggedIn} component = {AuthRouter} exact />
+          <PrivateRoute  path="/home"   isAuthenticated={isLoggedIn}   component = {DashboardRouters}  />
+
+          <Redirect to="/"/>
         </Switch>
       </div>
     </Router>
