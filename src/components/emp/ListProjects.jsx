@@ -63,7 +63,7 @@ const ListProjects = () => (
                             </tr>
                         </tbody>
                     </table>
-                    <Link className="btn-newTasacion"  to="/tasacion">Nueva Tasación</Link>
+                    <Link className="btn-newTasacion"  to="/home/tasacion">Nueva Tasación</Link>
                 </div> 
             
             </div>
