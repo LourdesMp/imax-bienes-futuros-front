@@ -1,5 +1,7 @@
 import { types } from '../types/types';
 
+
+//acciones para determinar los errores
 export const setError = (err) => ({
     type: types.uiSetError,
     payload: err
