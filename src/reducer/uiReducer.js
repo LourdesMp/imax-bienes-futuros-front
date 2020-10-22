@@ -6,6 +6,7 @@ const initialState = {
     msgError: null
 };
 
+//función que permitirá verificar el estado del usuario
 
 export const uiReducer = (state= initialState, action) => {
 
