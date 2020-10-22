@@ -1,3 +1,5 @@
+
+//tipos de las acciones que se van a disparar con el redux
 export const types = {
     login: '[Auth] Login',
     logout: '[Auth] Logout',
