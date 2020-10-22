@@ -8,8 +8,10 @@ import { startLogout } from '../actions/auth';
 
 const Header = () => {
 
+    //disparo de la accion para el redux
     const dispatch = useDispatch();
 
+    //funcion de cerrar sesion
     const handleLogout = (e) =>  {
         e.preventDefault();
         dispatch(startLogout());
@@ -23,14 +25,14 @@ const Header = () => {
             <nav className= "menu">
                 <ul className="menubar">
                 <li >
-                    <Link  to="/perfil">Perfil</Link>
+                    <Link  to="/home/perfil">Perfil</Link>
                 </li>
                 <li>
                      <Link  to="/home"> Bienes Futuros</Link>
                     <ul>       
-                        <li > <Link  className="sub"to="/proyectos">Proyectos</Link></li>
-                        <li > <Link  className="sub"to="/nuevo">Nuevo Proyectos</Link></li> 
-                        <li > <Link className="sub"to="/tasacion">Nueva Tasacion</Link></li>    
+                        <li > <Link  className="sub"to="/home/proyectos">Proyectos</Link></li>
+                        <li > <Link  className="sub"to="/home/nuevo">Nuevo Proyectos</Link></li> 
+                        <li > <Link className="sub"to="/home/tasacion">Nueva Tasacion</Link></li>    
                     </ul>
                 </li>
                 <li>
