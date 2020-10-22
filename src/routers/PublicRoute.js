@@ -10,11 +10,12 @@ export const PublicRoute = ({
     ...rest
 }) => {
 
+    //si el usuario esta logeado, ingresará al home y sino se quedara en la vista en la que se encuentra
     return (
         <Route { ...rest }
             component={ (props) => (
                 ( isAuthenticated )
-                    ? ( <Redirect to="/" /> )
+                    ? ( <Redirect to="/home"  /> )
                     : ( <Component { ...props } /> )
             )}
         
