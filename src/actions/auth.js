@@ -1,7 +1,7 @@
 import {firebase} from '../firebase-config';
 import { types } from "../types/types";
 
-
+//funcion para login
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch ) => {
         firebase.auth().signInWithEmailAndPassword ( email, password) 
@@ -14,7 +14,7 @@ export const startLoginEmailPassword = (email, password) => {
     }
 };
 
-
+//funcion que crea el usuario
 export const startRegisterWithEmailPassword = ( email, password) => {
   return (dispatch) =>  {
       firebase.auth().createUserWithEmailAndPassword ( email, password) 
@@ -27,6 +27,7 @@ export const startRegisterWithEmailPassword = ( email, password) => {
   }
 }
 
+//funcion que nos devuelve uid y name del usuario
 export const login= (uid, displayName) => ({
    
         type : types.login,
@@ -38,6 +39,7 @@ export const login= (uid, displayName) => ({
 });
 
 
+//funcion para el logout, donde el disparo será asincrono
 export const startLogout = () => {
     return async (dispatch) => {
        await firebase.auth().signOut();
