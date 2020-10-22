@@ -88,6 +88,30 @@
   margin: 0 10px;
 }
 
+.login .logIn .formulary .box-user .errors::-webkit-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.login .logIn .formulary .box-user .errors:-ms-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.login .logIn .formulary .box-user .errors::-ms-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.login .logIn .formulary .box-user .errors::placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.login .logIn .formulary .box-error {
+  border: 2px solid red;
+}
+
 .login .logIn .formulary .btn-login {
   color: #fff;
   font-family: 'Roboto', sans-serif;
@@ -284,6 +308,10 @@ header nav a {
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   display: block;
+}
+
+header .sub {
+  color: black;
 }
 
 nav li ul {
