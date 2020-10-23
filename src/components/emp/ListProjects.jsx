@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../Header';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getProjects } from '../../controller/projects';
 
-const ListProjects = () => (
+const ListProjects = () => {
+    
+    const [project, setProject] = useState ({
+        DataProjects : [],
+        projectData  : {
+            IdProyecto: '',
+            NombreProyecto: '',
+            Direccion: '',
+            Promotor: '',
+            Banco: ''
+        }
+    });
+
+    useEffect(() => {
+        getProjects().then((resp) => setProject((prevState) => ({
+            ...prevState,
+            DataProjects:resp
+        } )));
+    }, []);
+    
+    
+    return(
     <section className="form-listProjects">
         <Header/>
         <div className ="box-bodyList">
@@ -37,30 +60,24 @@ const ListProjects = () => (
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Nueva Primavera</td>
-                                <td>Av Larco 320 Barranco - Lima</td>
-                                <td>xxxxxxxxxxxx</td>
-                                <td>Banco BCP</td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Nueva Primavera</td>
-                                <td>Av Larco 320 Barranco - Lima</td>
-                                <td>xxxxxxxxxxxx</td>
-                                <td>Banco BCP</td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Nueva Primavera</td>
-                                <td>Av Larco 320 Barranco - Lima</td>
-                                <td>xxxxxxxxxxxx</td>
-                                <td>Banco BCP</td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
-                            </tr>
+                        {
+                            project.DataProjects.length > 0
+                        
+                            ? project.DataProjects.map((element) => (
+                                <tr key={element.IdProyecto}>
+                                    <td>{element.NombreProyecto}</td>
+                                    <td>{element.Direccion}</td>
+                                    <td>{element.Promotor}</td>
+                                    <td>{element.Banco}</td>
+                                    <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
+                                    <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
+                                </tr>
+                            )):(
+                                <tr>
+                                    <td>No hay proyectos agregados</td>
+                                </tr>
+                            )
+                        }  
                         </tbody>
                     </table>
                     <Link className="btn-newTasacion"  to="/home/tasacion">Nueva Tasación</Link>
@@ -70,6 +87,6 @@ const ListProjects = () => (
         </div>
     </section>
     
-);
+)};
 
 export default ListProjects;
