@@ -1,9 +1,48 @@
-import React from 'react';
+import React, {useState}from 'react';
+import { useEffect } from 'react';
+import { getTasaciones } from '../../controller/tasaciones';
 import Header from '../Header';
 
 
 
-const Tasacion = () => (
+const Tasacion = () => {
+    
+    const [tasacion, setTasacion] = useState ({
+        allTasacion: [],
+        tasacionData : {
+            IdTasacion: '',
+            NombreCliente: '',
+            DniCliente: '',
+            NombreConyugue: '',
+            DniConyugue: '',
+            TipodeCambio: '',
+            IdProyecto: '',
+            NombreProyecto: '',
+            DireccionProyecto: '',
+            Promotor: '',
+            Banco: '',
+            Departamento: '',
+            Estacionamiento: '',
+            ValorVenta: '',
+            Moneda: '',
+            ValorMetroCuadrado: '',
+            ValorComercial: '',
+            PorcentajeRevision: ''
+        }
+    });
+
+    useEffect(() => {
+        getTasaciones().then((resp) => setTasacion ((prevState) => ({
+            ...prevState,
+            allTasacion: resp
+        })));
+    }, []);
+
+
+
+
+
+    return(
     <section className="form-profile">
         <Header/>
         <div className ="box-bodyList">
@@ -77,32 +116,26 @@ const Tasacion = () => (
                                 <th>Formato</th>
                             </tr>
                         </thead>
-
+                          
                         <tbody>
-                            <tr>
-                                <td>Nueva Primavera</td>
-                                <td>Av Larco 320 Barranco - Lima</td>
-                                <td>xxxxxxxxxxxx</td>
-                                <td>Banco BCP</td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Nueva Primavera</td>
-                                <td>Av Larco 320 Barranco - Lima</td>
-                                <td>xxxxxxxxxxxx</td>
-                                <td>Banco BCP</td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Nueva Primavera</td>
-                                <td>Av Larco 320 Barranco - Lima</td>
-                                <td>xxxxxxxxxxxx</td>
-                                <td>Banco BCP</td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
-                                <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
-                            </tr>
+                        { 
+                            tasacion.allTasacion.length > 0
+
+                            ? tasacion.allTasacion.map((element) => (
+                                <tr key={element.IdTasacion}>
+                                    <td>{element.NombreProyecto}</td>
+                                    <td>{element.DireccionProyecto}</td>
+                                    <td>{element.Promotor}</td>
+                                    <td>{element.Banco}</td>
+                                    <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
+                                    <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
+                                </tr>
+                            )): (
+                                <tr>
+                                    <td>No hay proyectos agregados</td>
+                                </tr>
+                            )
+                        }
                         </tbody>
                     </table>
                     <div className="box-btn"> 
@@ -115,6 +148,6 @@ const Tasacion = () => (
         </div>
     </section>
     
-);
+)};
 
 export default Tasacion;
