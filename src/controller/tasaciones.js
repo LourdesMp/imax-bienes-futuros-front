@@ -1,7 +1,7 @@
 
 // peticion get de los proyectos a la database
 export const getTasaciones = () =>
-  fetch('http://localhost:3000/api/v1/tasaciones/listTasaciones', {
+  fetch('http://localhost:8000/api/v1/tasaciones/listTasaciones', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
