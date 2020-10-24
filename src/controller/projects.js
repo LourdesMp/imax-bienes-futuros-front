@@ -1,10 +1,11 @@
 
 // peticion get de los proyectos a la database
 export const getProjects = () =>
-  fetch('http://localhost:3000/api/v1/proyectos/list', {
+  fetch('http://localhost:8000/api/v1/proyectos/list', {
     method: 'GET',
+
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     //   Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     },
   }).then((resp) => {
@@ -17,8 +18,7 @@ export const getProjects = () =>
     }
   });
 
-
-  export const postProduct = (product) => fetch('http://localhost:3000/api/v1/proyectos/list', {
+  export const postProduct = (product) => fetch('http://localhost:8000/api/v1/proyectos/list', {
   method: 'POST',
   body: JSON.stringify(product),
   headers: {
@@ -39,7 +39,7 @@ export const getProjects = () =>
   }
 });
 
-export const deleteProduct = (id) => fetch(`http://localhost:3000/api/v1/proyectos/list/${id}`, {
+export const deleteProduct = (id) => fetch(`http://localhost:8000/api/v1/proyectos/list/${id}`, {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export const deleteProduct = (id) => fetch(`http://localhost:3000/api/v1/proyect
   }
 });
 
-export const putProduct = (product, id) => fetch(`http://localhost:3000/api/v1/proyectos/list/${id}`, {
+export const putProduct = (product, id) => fetch(`http://localhost:8000/api/v1/proyectos/list/${id}`, {
   method: 'PUT',
   body: JSON.stringify(product),
   headers: {
