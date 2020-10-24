@@ -8,7 +8,7 @@ import Header from '../Header';
 const Tasacion = () => {
     
     const [tasacion, setTasacion] = useState ({
-        allTasacion: [],
+        DataTasaciones: [],
         tasacionData : {
             IdTasacion: '',
             NombreCliente: '',
@@ -34,7 +34,7 @@ const Tasacion = () => {
     useEffect(() => {
         getTasaciones().then((resp) => setTasacion ((prevState) => ({
             ...prevState,
-            allTasacion: resp
+            DataTasaciones: resp.DataTasaciones
         })));
     }, []);
 
@@ -119,9 +119,9 @@ const Tasacion = () => {
                           
                         <tbody>
                         { 
-                            tasacion.allTasacion.length > 0
+                            tasacion.DataTasaciones.length > 0
 
-                            ? tasacion.allTasacion.map((element) => (
+                            ? tasacion.DataTasaciones.map((element) => (
                                 <tr key={element.IdTasacion}>
                                     <td>{element.NombreProyecto}</td>
                                     <td>{element.DireccionProyecto}</td>
