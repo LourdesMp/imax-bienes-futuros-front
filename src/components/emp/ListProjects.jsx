@@ -20,7 +20,7 @@ const ListProjects = () => {
     useEffect(() => {
         getProjects().then((resp) => setProject((prevState) => ({
             ...prevState,
-            DataProjects:resp
+            DataProjects:resp.DataProjects
         } )));
     }, []);
     
