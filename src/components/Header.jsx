@@ -31,8 +31,7 @@ const Header = () => {
                      <Link  to="/home"> Bienes Futuros</Link>
                     <ul>       
                         <li > <Link  className="sub"to="/home/proyectos">Proyectos</Link></li>
-                        <li > <Link  className="sub"to="/home/nuevo">Nuevo Proyectos</Link></li> 
-                        <li > <Link className="sub"to="/home/tasacion">Nueva Tasacion</Link></li>    
+                        <li > <Link className="sub"to="/home/tasaciones">Tasaciones</Link></li>    
                     </ul>
                 </li>
                 <li>

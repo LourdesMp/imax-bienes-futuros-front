@@ -901,6 +901,21 @@ header nav a:hover {
   border: 0;
 }
 
+.box-tasacion .body-list .btn-newTasacion {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  background-color: #009AD2;
+  height: 35px;
+  margin-left: 40%;
+  width: 20%;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 0;
+  text-decoration: none;
+  text-align: center;
+}
+
 * {
   margin: 0;
   padding: 0;

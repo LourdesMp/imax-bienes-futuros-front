@@ -5,7 +5,8 @@ import Home from '../components/Home';
 import Profile from '../components/Profile';
 import ListProjects from '../components/emp/ListProjects';
 import NewProject from '../components/emp/NewProject';
-import Tasacion from '../components/emp/Tasacion'
+import Tasacion from '../components/emp/Tasacion';
+import ListTasaciones from '../components/emp/ListTasaciones';
 import NotFound from '../components/NotFound';
 
 
@@ -21,6 +22,7 @@ export const DashboardRouters = () => {
                     <Route exact path="/home/proyectos" component={ ListProjects }/>
                     <Route exact path="/home/nuevo" component={ NewProject }/>
                     <Route exact path="/home/tasacion" component={ Tasacion }/>
+                    <Route exact path="/home/tasaciones" component={ ListTasaciones }/>
                     <Route exact path="/notfound" component={ NotFound }/>
                 </Switch>
             </div>
