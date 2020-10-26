@@ -80,7 +80,7 @@ const ListProjects = () => {
                         }  
                         </tbody>
                     </table>
-                    <Link className="btn-newTasacion"  to="/home/nuevo">Nuevo Proyecto</Link>
+                    <Link className="btn-newTasacion"  to="/home/newProject">Nuevo Proyecto</Link>
                 </div> 
             
             </div>
