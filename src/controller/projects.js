@@ -18,9 +18,9 @@ export const getProjects = () =>
     }
   });
 
-  export const postProduct = (product) => fetch('http://localhost:8000/api/v1/proyectos/list', {
+  export const postProject = (project) => fetch('http://localhost:8000/api/v1/proyectos/newProyecto', {
   method: 'POST',
-  body: JSON.stringify(product),
+  body: JSON.stringify(project),
   headers: {
     'Content-Type': 'application/json',
     // Authorization: `Bearer ${sessionStorage.getItem('token')}`,

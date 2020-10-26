@@ -9,11 +9,11 @@ const ListProjects = () => {
     const [project, setProject] = useState ({
         DataProjects : [],
         projectData  : {
-            IdProyecto: '',
-            NombreProyecto: '',
-            Direccion: '',
-            Promotor: '',
-            Banco: ''
+            idProyecto: '',
+            nombreProyecto: '',
+            direccion: '',
+            promotor: '',
+            banco: ''
         }
     });
 
@@ -64,11 +64,11 @@ const ListProjects = () => {
                             project.DataProjects.length > 0
                         
                             ? project.DataProjects.map((element) => (
-                                <tr key={element.IdProyecto}>
-                                    <td>{element.NombreProyecto}</td>
-                                    <td>{element.Direccion}</td>
-                                    <td>{element.Promotor}</td>
-                                    <td>{element.Banco}</td>
+                                <tr key={element.idProyecto}>
+                                    <td>{element.nombreProyecto}</td>
+                                    <td>{element.direccion}</td>
+                                    <td>{element.promotor}</td>
+                                    <td>{element.banco}</td>
                                     <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
                                     <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
                                 </tr>
