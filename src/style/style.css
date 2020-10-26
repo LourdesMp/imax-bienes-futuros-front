@@ -499,7 +499,7 @@ header nav a:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 90%;
-  height: 65%;
+  height: 85%;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -811,7 +811,29 @@ header nav a:hover {
 .box-tasacion .body-list input {
   border: none;
   height: 20px;
-  color: #fafafa;
+  background: #fafafa;
+  color: black;
+  margin-right: 5px;
+}
+
+.box-tasacion .body-list .errors::-webkit-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.box-tasacion .body-list .errors:-ms-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.box-tasacion .body-list .errors::-ms-input-placeholder {
+  color: red;
+  font-weight: bold;
+}
+
+.box-tasacion .body-list .errors::placeholder {
+  color: red;
+  font-weight: bold;
 }
 
 .box-tasacion .body-list label {
@@ -854,6 +876,31 @@ header nav a:hover {
 .box-tasacion .body-list .datos-inmueble {
   border: 1px solid #D3D3D3;
   padding: 10px;
+}
+
+.box-tasacion .body-list .datos-inmueble .box-add {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.box-tasacion .body-list .datos-inmueble .box-add .btn-add {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #009AD2;
+  height: 25px;
+  width: 10%;
+  border-radius: 5px;
+  border: 0;
+  text-decoration: none;
+  text-align: center;
 }
 
 .box-tasacion .body-list .table-list {
