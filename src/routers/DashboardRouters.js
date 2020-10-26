@@ -20,9 +20,9 @@ export const DashboardRouters = () => {
                     <Route exact path="/home" component={ Home }/>
                     <Route exact path="/home/perfil" component={ Profile }/>
                     <Route exact path="/home/proyectos" component={ ListProjects }/>
-                    <Route exact path="/home/nuevo" component={ NewProject }/>
-                    <Route exact path="/home/tasacion" component={ Tasacion }/>
+                    <Route exact path="/home/newProject" component={ NewProject }/>
                     <Route exact path="/home/tasaciones" component={ ListTasaciones }/>
+                    <Route exact path="/home/newTasacion" component={ Tasacion }/>
                     <Route exact path="/notfound" component={ NotFound }/>
                 </Switch>
             </div>
