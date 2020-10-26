@@ -11,6 +11,7 @@ const NewProject = () => {
         projectData  : {
             idProyecto: '',
             nombreProyecto: '',
+            direccion:'',
             promotor: '',
             banco: 'bcp'
         }
@@ -19,6 +20,7 @@ const NewProject = () => {
     const [error, setError] = useState({
         idProyecto: false,
         nombreProyecto: false,
+        direccion:false,
         promotor: false,
         banco: false,
       });
@@ -45,7 +47,9 @@ const NewProject = () => {
           else setError((prevState) => ({ ...prevState, nombreProyecto: false }));
         } else {
           const projectObj = {
+            idProyecto: project.projectData.idProyecto,
             nombreProyecto: project.projectData.nombreProyecto,
+            direccion: project.projectData.direccion,
             promotor: project.projectData.promotor,
             banco: project.projectData.banco,
           };
@@ -75,11 +79,27 @@ const NewProject = () => {
             <div className="box-newProject">
                 <p className="title">Datos del Proyecto</p>
                 <div className="box-user"> 
+                    <label htmlFor="input-id">ID Proyecto: </label> 
+                    <input name="idProyecto" type="number" onChange={handleInputChange} 
+                    defaultValue={project.projectData.idProyecto}
+                     placeholder={error.idProyecto ? 'Campo requerido' : ''}
+                     className={error.idProyecto ? 'nombre error' : 'nombre'}
+                      required/>   
+                </div>
+                <div className="box-user"> 
                     <label htmlFor="input-name">Nombre: </label> 
                     <input name="nombreProyecto" type="text" onChange={handleInputChange} 
                     defaultValue={project.projectData.nombreProyecto}
                      placeholder={error.nombreProyecto ? 'Campo requerido' : ''}
                      className={error.nombreProyecto ? 'nombre error' : 'nombre'}
+                      required/>   
+                </div>
+                <div className="box-user"> 
+                    <label htmlFor="input-direccion">Dirección: </label> 
+                    <input name="direccion" type="text" onChange={handleInputChange} 
+                    defaultValue={project.projectData.direccion}
+                     placeholder={error.direccion ? 'Campo requerido' : ''}
+                     className={error.direccion ? 'nombre error' : 'nombre'}
                       required/>   
                 </div>
                 <div className="box-user"> 
