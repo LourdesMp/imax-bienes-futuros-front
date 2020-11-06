@@ -18,15 +18,22 @@ export const getProjects = () =>
     }
   });
 
-  export const postProject = (project) => fetch('http://localhost:8000/api/v1/proyectos/newProyecto', {
+
+ 
+
+  export const postProject = (formData) => 
+  fetch('http://localhost:8000/api/v1/proyectos/newProyecto', {
   method: 'POST',
-  body: JSON.stringify(project),
-  headers: {
-    'Content-Type': 'application/json',
-    // Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-  },
+  //body: JSON.stringify(project),
+  body: formData,
+  //   headers: {
+  // //   'Accept': 'application/json',
+  //   'Content-Type':'form-data',
+  // //  // Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+  //  },
 }).then((resp) => {
   if (resp.status === 200) {
+    alert('hola');
     return resp.json();
   } if (resp.status === 400) {
     return new Error('Faltan el nombre del proyecto');
