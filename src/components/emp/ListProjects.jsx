@@ -51,6 +51,7 @@ const ListProjects = () => {
                     <table className="table-list">
                         <thead>
                             <tr>
+                                <th>id</th>
                                 <th>Nombre del Proyecto</th>
                                 <th>Dirección</th>
                                 <th>Promotor</th>
@@ -65,6 +66,7 @@ const ListProjects = () => {
                         
                             ? project.DataProjects.map((element) => (
                                 <tr key={element.idProyecto}>
+                                    <td>{element.idProyecto}</td>
                                     <td>{element.nombreProyecto}</td>
                                     <td>{element.direccion}</td>
                                     <td>{element.promotor}</td>
