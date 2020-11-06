@@ -13,9 +13,13 @@ const NewProject = () => {
             nombreProyecto: '',
             direccion:'',
             promotor: '',
-            banco: 'bcp'
+            banco: 'bcp',
+            file: '',
+            tasacion: ''
         }
     });
+
+
 
     const [error, setError] = useState({
         idProyecto: false,
@@ -23,13 +27,22 @@ const NewProject = () => {
         direccion:false,
         promotor: false,
         banco: false,
+        file:false,
+        tasacion:false
       });
     
     const handleInputChange = (e) => {
+    
         const input = e.target.name;
         const data = e.target.value;
-        console.log(data);
-        console.log(input);
+/*
+        if(input == 'matriz'){
+          console.log(this.files);
+        }*/
+        // console.log(data);
+        // console.log(input);
+
+
         setProject((prevState) => ({
           ...prevState,
           projectData: {
@@ -37,24 +50,62 @@ const NewProject = () => {
             [input]: data,
           },
         }));
+
+
       };
+
+    // const handFile = (e) =>{
+    //   const matriz = e.target.files[0];
+    //   if(matriz) {
+
+    //   }else{
+    //     setError("ingrese matriz")
+    //   }
+
+    // }
+     
 
       const handleRequestProject = () => {
         const validName = project.projectData.nombreProyecto.trim() === '';
-    
-        if (validName) {
+        const validMatriz =project.projectData.matriz === '';
+        const validTasacion = project.projectData.tasacion === '';
+
+        if (validName ||validMatriz || validTasacion) {
           if (validName) setError((prevState) => ({ ...prevState, nombreProyecto: true }));
           else setError((prevState) => ({ ...prevState, nombreProyecto: false }));
+          if (validMatriz) setError((prevState) => ({ ...prevState, matriz: true }));
+          else setError((prevState) => ({ ...prevState, matriz: false }));
+          if (validTasacion) setError((prevState) => ({ ...prevState, tasacion: true }));
+          else setError((prevState) => ({ ...prevState, tasacion: false }));
+
+          
         } else {
+          var formData = new FormData();
+          formData.append('idProyecto',project.projectData.idProyecto);
+           formData.append('nombreProyecto',project.projectData.nombreProyecto);
+           formData.append('direccion',project.projectData.direccion);
+           formData.append('promotor',project.projectData.promotor);
+           formData.append('banco',project.projectData.banco);
+          var file = document.forms['formName']['file'].files[0];
+          var file1 = document.forms['formName']['tasacion'].files[0];
+          formData.append('file',file);
+          formData.append('tasacion',file1);
+          // formData.append('tasacion',new File(['tasacion'],project.projectData.tasacion,{
+          //   type:'xls'
+          // }));
+
+          /*
           const projectObj = {
             idProyecto: project.projectData.idProyecto,
             nombreProyecto: project.projectData.nombreProyecto,
             direccion: project.projectData.direccion,
             promotor: project.projectData.promotor,
             banco: project.projectData.banco,
-          };
-          console.log(projectObj)
-          postProject(projectObj).then((resp) => {
+            matriz: project.projectData.matriz,
+            tasacion: project.projectData.tasacion
+          };*/
+          // console.log(projectObj)
+          postProject(formData).then((resp) => {
             setProject((prevState) => ({
               ...prevState,
               DataProjects: [...project.DataProjects, resp],
@@ -75,7 +126,7 @@ const NewProject = () => {
     return(
     <section className="form-newProject">
         <Header/>
-        <div className ="box-body">
+        <div className ="box-body" >
             <div className="box-newProject">
                 <p className="title">Datos del Proyecto</p>
                 <div className="box-user"> 
@@ -117,7 +168,28 @@ const NewProject = () => {
                     <option value="bbva">BBVA-Banco Continental</option>
                     <option value="bp">Banco Pichincha</option>
                     </select>  
-                </div>     
+                </div>   
+                <form id="formName" enctype="multipart/form-data" >
+                <div className="box-user"> 
+                    <label>Matriz general: </label> 
+                    
+                        <input id="file" name="file"  type="file" onChange={handleInputChange}
+                        defaultValue={project.projectData.file}
+                        placeholder={error.matriz ? 'Campo requerido' : ''}
+                        className={error.matriz ? 'file error' : 'file'}
+                        required/>  
+                   
+                
+                </div> 
+                <div className="box-user"> 
+                    <label>Tasaciones: </label> 
+                    <input name="tasacion" id="tasacion" type="file" onChange={handleInputChange}
+                    defaultValue={project.projectData.tasacion}
+                    placeholder={error.tasacion ? 'Campo requerido' : ''}
+                    className={error.tasacion ? 'tasacion error' : 'tasacion'}
+                    required/>  
+                </div> 
+                </form>
                 <div className="box-btn">
                 <button className= "btn-guardar" onClick={handleRequestProject}> Guardar</button>
                 <button className= "btn-cancelar"> Cancelar </button>
