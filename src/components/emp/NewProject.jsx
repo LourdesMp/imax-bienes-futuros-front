@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../Header';
-import { postProject } from '../../controller/projects';
+import { postProject, getLastId } from '../../controller/projects';
 
 
 
@@ -18,6 +18,8 @@ const NewProject = () => {
             tasacion: ''
         }
     });
+
+  
 
 
 
@@ -86,9 +88,9 @@ const NewProject = () => {
            formData.append('direccion',project.projectData.direccion);
            formData.append('promotor',project.projectData.promotor);
            formData.append('banco',project.projectData.banco);
-          var file = document.forms['formName']['file'].files[0];
+          var file = document.forms['formName']['data'].files[0];
           var file1 = document.forms['formName']['tasacion'].files[0];
-          formData.append('file',file);
+          formData.append('data',file);
           formData.append('tasacion',file1);
           // formData.append('tasacion',new File(['tasacion'],project.projectData.tasacion,{
           //   type:'xls'
@@ -116,8 +118,29 @@ const NewProject = () => {
         } 
       };
 
+      // const obtenerIdProject = () => {
+      //   getLastId().then((resp) =>{
+      //     project.projectData.idProyecto  =  resp.DataProjects[0].LastID
+      //     setProject((prevState) => ({
+      //     ...prevState,
+      //     projectData: {
+      //       ...project.projectData,
+      //       idProyecto : resp.DataProjects[0].LastID
+      //     }
+      //   }));
+      //   });
+      // }
+      // obtenerIdProject();
 
-
+      useEffect(() => {
+        getLastId().then((resp) => setProject((prevState) => ({
+          ...prevState,
+          projectData: {
+            ...project.projectData,
+            idProyecto : resp.DataProjects[0].LastID
+          }
+        } )));
+    }, []);
 
 
 
@@ -131,7 +154,7 @@ const NewProject = () => {
                 <p className="title">Datos del Proyecto</p>
                 <div className="box-user"> 
                     <label htmlFor="input-id">ID Proyecto: </label> 
-                    <input name="idProyecto" type="number" onChange={handleInputChange} 
+                    <input name="idProyecto" type="hidden" onChange={handleInputChange} 
                     defaultValue={project.projectData.idProyecto}
                      placeholder={error.idProyecto ? 'Campo requerido' : ''}
                      className={error.idProyecto ? 'nombre error' : 'nombre'}
@@ -173,10 +196,10 @@ const NewProject = () => {
                 <div className="box-user"> 
                     <label>Matriz general: </label> 
                     
-                        <input id="file" name="file"  type="file" onChange={handleInputChange}
+                        <input id="data" name="data"  type="file" onChange={handleInputChange}
                         defaultValue={project.projectData.file}
                         placeholder={error.matriz ? 'Campo requerido' : ''}
-                        className={error.matriz ? 'file error' : 'file'}
+                        className={error.matriz ? 'data error' : 'data'}
                         required/>  
                    
                 
