@@ -3,16 +3,16 @@ import img from '../../assets/logo-imax.png';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import  {useDispatch, useSelector} from 'react-redux';
-import {startLoginEmailPassword } from '../../actions/auth';
-import { removeError, setError } from '../../actions/ui';
+import {startLoginEmailPassword } from '../../store/actions/auth';
+import { removeError, setError } from '../../store/actions/ui';
 
 
 
 const Login = () => {
 
   const dispatch = useDispatch();
-
-  const {msgError} = useSelector ( state => state.ui);
+  console.log(useSelector(state => state))
+  const {msgError} = useSelector ( state => state.uiReducer);
   console.log(msgError)
 
   //uso del hooks que se creo, para determinar cuando se está llenando

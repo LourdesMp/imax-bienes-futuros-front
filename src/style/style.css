@@ -394,9 +394,9 @@ header nav a:hover {
           align-items: center;
   border-radius: 9px;
   background: rgba(244, 255, 251, 0.71);
-  width: 28%;
+  width: 45%;
   height: 60%;
-  padding: 20px;
+  padding: 15px;
   font-family: 'Roboto', sans-serif;
   margin-bottom: 30px;
 }
@@ -501,6 +501,13 @@ header nav a:hover {
   width: 90%;
   height: 85%;
   font-family: 'Roboto', sans-serif;
+}
+
+.box-bodyList .box-listProjects .user-tasacion {
+  background: #427bc5;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
 }
 
 .box-bodyList .box-listProjects .user-upload {
@@ -752,6 +759,19 @@ header nav a:hover {
   border: 0;
 }
 
+.box-newProject .box-btn .btn-guardar .btn-cancelarLink, .box-newProject .box-btn .btn-cancelar .btn-cancelarLink {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 15px;
+  background-color: #009AD2;
+  height: 35px;
+  width: 30%;
+  border-radius: 5px;
+  border: 0;
+  text-decoration: none;
+}
+
 .box-tasacion {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -813,7 +833,7 @@ header nav a:hover {
   height: 20px;
   background: #fafafa;
   color: black;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .box-tasacion .body-list .errors::-webkit-input-placeholder {
@@ -840,24 +860,8 @@ header nav a:hover {
   font-size: 15px;
 }
 
-.box-tasacion .body-list .search-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.box-tasacion .body-list .search-list .box-first {
-  margin-right: 150px;
-}
-
 .box-tasacion .body-list .box-second {
-  margin: 20px 0;
+  margin: 10px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -867,10 +871,22 @@ header nav a:hover {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.box-tasacion .body-list .box-second .box-date {
+  margin-right: 30px;
+}
+
+.box-tasacion .body-list .box-second .input-date {
+  margin-right: 5px;
 }
 
 .box-tasacion .body-list .box-second .search-input {
-  margin-right: 5px;
+  margin-right: 70px;
+}
+
+.box-tasacion .body-list .box-second .input-tasacion {
+  margin-right: 40px;
 }
 
 .box-tasacion .body-list .datos-inmueble {

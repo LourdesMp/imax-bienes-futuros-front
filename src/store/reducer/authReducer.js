@@ -1,4 +1,4 @@
-import { types } from '../types/types';
+import { types } from '../../types/types';
 
 //funcion que recibe el estado del usuario, y depende de ello retorna informacion 
 export const authReducer = (state= {}, action) => {

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../Header';
 import { postProject, getLastId } from '../../controller/projects';
-
-
+import {getProject} from '../../store/actions/projectsActions';
+import  {useDispatch, useSelector} from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const NewProject = () => {
 
+  const dispatch = useDispatch();
     const [project, setProject] = useState ({
         DataProjects : [],
         projectData  : {
             idProyecto: '',
             nombreProyecto: '',
-            direccion:'',
             promotor: '',
             banco: 'bcp',
             file: '',
@@ -23,15 +25,14 @@ const NewProject = () => {
 
 
 
-    const [error, setError] = useState({
-        idProyecto: false,
-        nombreProyecto: false,
-        direccion:false,
-        promotor: false,
-        banco: false,
-        file:false,
-        tasacion:false
-      });
+    // const [error, setError] = useState({
+    //     idProyecto: false,
+    //     nombreProyecto: false,
+    //     promotor: false,
+    //     banco: false,
+    //     file:false,
+    //     tasacion:false
+    //   });
     
     const handleInputChange = (e) => {
     
@@ -65,27 +66,23 @@ const NewProject = () => {
     //   }
 
     // }
-     
 
       const handleRequestProject = () => {
-        const validName = project.projectData.nombreProyecto.trim() === '';
-        const validMatriz =project.projectData.matriz === '';
-        const validTasacion = project.projectData.tasacion === '';
+        // const validName = project.projectData.nombreProyecto.trim() === '';
+        // const validMatriz =project.projectData.matriz === '';
+        // const validTasacion = project.projectData.tasacion === '';
 
-        if (validName ||validMatriz || validTasacion) {
-          if (validName) setError((prevState) => ({ ...prevState, nombreProyecto: true }));
-          else setError((prevState) => ({ ...prevState, nombreProyecto: false }));
-          if (validMatriz) setError((prevState) => ({ ...prevState, matriz: true }));
-          else setError((prevState) => ({ ...prevState, matriz: false }));
-          if (validTasacion) setError((prevState) => ({ ...prevState, tasacion: true }));
-          else setError((prevState) => ({ ...prevState, tasacion: false }));
-
-          
-        } else {
+        // if (validName ||validMatriz || validTasacion) {
+        //   if (validName) setError((prevState) => ({ ...prevState, nombreProyecto: true }));
+        //   else setError((prevState) => ({ ...prevState, nombreProyecto: false }));
+        //   if (validMatriz) setError((prevState) => ({ ...prevState, matriz: true }));
+        //   else setError((prevState) => ({ ...prevState, matriz: false }));
+        //   if (validTasacion) setError((prevState) => ({ ...prevState, tasacion: true }));
+        //   else setError((prevState) => ({ ...prevState, tasacion: false }));
+        // } else {
           var formData = new FormData();
           formData.append('idProyecto',project.projectData.idProyecto);
            formData.append('nombreProyecto',project.projectData.nombreProyecto);
-           formData.append('direccion',project.projectData.direccion);
            formData.append('promotor',project.projectData.promotor);
            formData.append('banco',project.projectData.banco);
           var file = document.forms['formName']['data'].files[0];
@@ -100,7 +97,6 @@ const NewProject = () => {
           const projectObj = {
             idProyecto: project.projectData.idProyecto,
             nombreProyecto: project.projectData.nombreProyecto,
-            direccion: project.projectData.direccion,
             promotor: project.projectData.promotor,
             banco: project.projectData.banco,
             matriz: project.projectData.matriz,
@@ -112,36 +108,48 @@ const NewProject = () => {
               ...prevState,
               DataProjects: [...project.DataProjects, resp],
             }));
+         
           }).catch((err) => {
-            setError(err);
+            return err
           });
-        } 
+       // } 
       };
 
-      // const obtenerIdProject = () => {
-      //   getLastId().then((resp) =>{
-      //     project.projectData.idProyecto  =  resp.DataProjects[0].LastID
-      //     setProject((prevState) => ({
-      //     ...prevState,
-      //     projectData: {
-      //       ...project.projectData,
-      //       idProyecto : resp.DataProjects[0].LastID
-      //     }
-      //   }));
-      //   });
-      // }
-      // obtenerIdProject();
+    //   useEffect(() => {
+    //     getLastId().then((resp) => setProject((prevState) => ({
+    //       ...prevState,
+    //       projectData: {
+    //         ...project.projectData,
+    //         idProyecto : resp.DataProjects[0].LastID
+    //       }
+    //     } )));
+    // }, []);
 
-      useEffect(() => {
-        getLastId().then((resp) => setProject((prevState) => ({
-          ...prevState,
-          projectData: {
-            ...project.projectData,
-            idProyecto : resp.DataProjects[0].LastID
-          }
-        } )));
-    }, []);
+    // const {
+    //   isLoading,
+    //   isSuccess,
+    //   isError,
+    //   data,
+    //   error
+    // } = useSelector ( state => state.projectsReducer.get);
 
+    // useEffect(() => {
+    //   dispatch(getProject())
+    //  }, [])
+
+    // const closeModal = () => {
+    //   setProject((prevState) => ({
+    //     ...prevState,
+    //     projectData  : {
+    //       idProyecto: '',
+    //       nombreProyecto: '',
+    //       promotor: '',
+    //       banco: 'bcp',
+    //       file: '',
+    //       tasacion: ''
+    //   }}));
+    // };
+  
 
 
     
@@ -153,35 +161,26 @@ const NewProject = () => {
             <div className="box-newProject">
                 <p className="title">Datos del Proyecto</p>
                 <div className="box-user"> 
-                    <label htmlFor="input-id">ID Proyecto: </label> 
                     <input name="idProyecto" type="hidden" onChange={handleInputChange} 
                     defaultValue={project.projectData.idProyecto}
-                     placeholder={error.idProyecto ? 'Campo requerido' : ''}
-                     className={error.idProyecto ? 'nombre error' : 'nombre'}
+                     placeholder='Campo requerido'
+                     className= 'nombre error' 
                       required/>   
                 </div>
                 <div className="box-user"> 
                     <label htmlFor="input-name">Nombre: </label> 
                     <input name="nombreProyecto" type="text" onChange={handleInputChange} 
                     defaultValue={project.projectData.nombreProyecto}
-                     placeholder={error.nombreProyecto ? 'Campo requerido' : ''}
-                     className={error.nombreProyecto ? 'nombre error' : 'nombre'}
-                      required/>   
-                </div>
-                <div className="box-user"> 
-                    <label htmlFor="input-direccion">Dirección: </label> 
-                    <input name="direccion" type="text" onChange={handleInputChange} 
-                    defaultValue={project.projectData.direccion}
-                     placeholder={error.direccion ? 'Campo requerido' : ''}
-                     className={error.direccion ? 'nombre error' : 'nombre'}
+                     placeholder='Campo requerido'
+                     className='nombre error'
                       required/>   
                 </div>
                 <div className="box-user"> 
                     <label>Promotor: </label> 
                     <input name="promotor"  type="text" onChange={handleInputChange}
                     defaultValue={project.projectData.promotor}
-                    placeholder={error.promotor ? 'Campo requerido' : ''}
-                    className={error.promotor ? 'promotor error' : 'promotor'}
+                    placeholder='Campo requerido'
+                    className='promotor error'
                     required/>  
                 </div>  
                 <div className="box-user"> <label>Banco: </label> 
@@ -198,8 +197,8 @@ const NewProject = () => {
                     
                         <input id="data" name="data"  type="file" onChange={handleInputChange}
                         defaultValue={project.projectData.file}
-                        placeholder={error.matriz ? 'Campo requerido' : ''}
-                        className={error.matriz ? 'data error' : 'data'}
+                        placeholder='Campo requerido'
+                        className='data error'
                         required/>  
                    
                 
@@ -208,14 +207,14 @@ const NewProject = () => {
                     <label>Tasaciones: </label> 
                     <input name="tasacion" id="tasacion" type="file" onChange={handleInputChange}
                     defaultValue={project.projectData.tasacion}
-                    placeholder={error.tasacion ? 'Campo requerido' : ''}
-                    className={error.tasacion ? 'tasacion error' : 'tasacion'}
+                    placeholder='Campo requerido' 
+                    className='tasacion error' 
                     required/>  
                 </div> 
                 </form>
                 <div className="box-btn">
                 <button className= "btn-guardar" onClick={handleRequestProject}> Guardar</button>
-                <button className= "btn-cancelar"> Cancelar </button>
+                <button className= "btn-cancelar" ><Link className="btn-cancelarLink"to="/home/proyectos">Cancelar</Link>  </button>
                 </div>
             </div>
         </div>

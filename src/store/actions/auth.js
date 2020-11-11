@@ -1,5 +1,5 @@
-import {firebase} from '../firebase-config';
-import { types } from "../types/types";
+import {firebase} from '../../firebase-config';
+import { types } from "../../types/types";
 
 //funcion para login
 export const startLoginEmailPassword = (email, password) => {

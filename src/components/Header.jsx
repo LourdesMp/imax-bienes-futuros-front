@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import 'firebase/auth';
 
 import { useDispatch } from 'react-redux';
-import { startLogout } from '../actions/auth';
+import { startLogout } from '../store/actions/auth';
 
 const Header = () => {
 
@@ -31,7 +31,7 @@ const Header = () => {
                      <Link  to="/home"> Bienes Futuros</Link>
                     <ul>       
                         <li > <Link  className="sub"to="/home/proyectos">Proyectos</Link></li>
-                        <li > <Link className="sub"to="/home/tasaciones">Tasaciones</Link></li>    
+                        {/* <li > <Link className="sub"to="/home/tasaciones">Tasaciones</Link></li>     */}
                     </ul>
                 </li>
                 <li>

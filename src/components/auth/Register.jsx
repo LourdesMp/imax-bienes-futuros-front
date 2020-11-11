@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { startRegisterWithEmailPassword} from '../../actions/auth';
-import { removeError, setError } from '../../actions/ui';
+import { startRegisterWithEmailPassword} from '../../store/actions/auth';
+import { removeError, setError } from '../../store/actions/ui';
 import img from '../../assets/logo-imax.png';
 import { useForm } from '../../hooks/useForm';
+
 
 
 
@@ -11,7 +12,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const {msgError} = useSelector ( state => state.ui);
+  const {msgError} = useSelector ( state => state.uiReducer);
   console.log(msgError)
   
   const [formValues, handleInputChange] = useForm ({
@@ -28,17 +29,29 @@ const Register = () => {
   const handleRegister = (e) =>{ 
     e.preventDefault();
      if (isFormValid ()){
-       dispatch (startRegisterWithEmailPassword(email, password))
+       dispatch(startRegisterWithEmailPassword(email, password))
       console.log(email, password, password2);
       console.log('se ingresó Register');
      }  
   }
 
   const isFormValid = () => {
+    // const notValidEmail = email.trim() !== /^[a-zA-Z][-_.a-zA-Z0-9]{5,29}@imax.com.pe$/;
+    // const exRegEmail = /^[a-zA-Z][-_.a-zA-Z0-9]{5,29}@imax.com.pe$/;
+    // var validEmail = new RegExp("^[a-zA-Z][-_.a-zA-Z0-9]{5,29}@imax.com.pe$");
+    // var result = validEmail.slice(1, -1); 
+    // console.log(validEmail)
+    // console.log(result)
+
       if (email.trim() === '') {
-        dispatch ( setError ('ingrese su email'));
+        console.log(email.trim())
+        dispatch ( setError ('el dominio del correo es incorrecto'));
         return false;
       }
+      // else if () {
+      //   dispatch ( setError ('ingrese su email'));
+      //   return false;
+      // }
       else if (password.trim() === '') {
         dispatch ( setError ('ingrese su password'));
         return false;

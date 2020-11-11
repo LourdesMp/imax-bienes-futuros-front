@@ -13,7 +13,7 @@ import { PrivateRoute } from './PrivateRouter';
 import {PublicRoute} from './PublicRoute';
 
 
-import { login } from '../actions/auth';
+import { login } from '../store/actions/auth';
 import { DashboardRouters } from './DashboardRouters';
 
 

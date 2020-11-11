@@ -37,7 +37,7 @@
             height: 20px;
             background: #fafafa;
             color: black;
-            margin-right: 5px;
+            margin-right: 10px;
             
            
 
@@ -56,28 +56,39 @@
            
         }
 
-        .search-list{
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+        // .search-list{
+        //     display: flex;
+        //     flex-direction: row;
+        //     flex-wrap: wrap;
             
 
-            .box-first{
-                margin-right: 150px;
+        //     .box-first{
+        //         margin-right: 150px;
               
-            }
+        //     }
            
-        }
+        // }
       
         .box-second{
-            margin: 20px 0;
+            margin: 10px 0;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             
+            .box-date{
+                margin-right: 30px;
+                 
+               }
+               .input-date{
+                margin-right: 5px;
+                 
+               }
            .search-input{
-               margin-right: 5px;
+            margin-right: 70px;
              
+           }
+           .input-tasacion{
+            margin-right: 40px;  
            }
         }
        
