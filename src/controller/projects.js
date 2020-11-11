@@ -50,7 +50,6 @@ export const getProjects = () =>
   //  },
 }).then((resp) => {
   if (resp.status === 200) {
-    alert('Proyecto ingresado correctamente');
     return resp.json();
   } if (resp.status === 400) {
     return new Error('Faltan el nombre del proyecto');

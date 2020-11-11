@@ -3,10 +3,11 @@ import Header from '../Header';
 import { postProject, getLastId } from '../../controller/projects';
 import {getProject} from '../../store/actions/projectsActions';
 import  {useDispatch, useSelector} from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const NewProject = () => {
+  const history = useHistory();
 
   const dispatch = useDispatch();
     const [project, setProject] = useState ({
@@ -67,6 +68,12 @@ const NewProject = () => {
 
     // }
 
+    const goListProjects = () => {
+      history.push({
+        pathname: "/home/proyectos"
+      });
+    }
+
       const handleRequestProject = () => {
         // const validName = project.projectData.nombreProyecto.trim() === '';
         // const validMatriz =project.projectData.matriz === '';
@@ -108,7 +115,8 @@ const NewProject = () => {
               ...prevState,
               DataProjects: [...project.DataProjects, resp],
             }));
-         
+           alert ('Proyecto ingresado correctamente')
+           goListProjects()
           }).catch((err) => {
             return err
           });
