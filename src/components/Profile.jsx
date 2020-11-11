@@ -3,6 +3,7 @@ import Header from './Header';
 import {useSelector} from 'react-redux';
 import { useEffect, useState } from 'react';
 import  {useDispatch} from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
 
@@ -69,7 +70,7 @@ const Profile = () => {
                 <div className="box-user"> <label>Confirmar Password: </label> <input className="user" type="password"  required/>  </div>          
                 <div className="box-btn">
                 <button className= "btn-guardar"> Guardar</button>
-                <button className= "btn-cancelar"> Cancelar </button>
+                <button className= "btn-cancelar"> <Link className="btn-cancelarLink"to="/home">Cancelar</Link> </button>
                 </div>
             </div>
         </div>

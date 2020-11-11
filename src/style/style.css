@@ -473,6 +473,19 @@ header nav a:hover {
   border: 0;
 }
 
+.box-profile .box-btn .btn-guardar .btn-cancelarLink, .box-profile .box-btn .btn-cancelar .btn-cancelarLink {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 15px;
+  background-color: #009AD2;
+  height: 35px;
+  width: 30%;
+  border-radius: 5px;
+  border: 0;
+  text-decoration: none;
+}
+
 .box-bodyList {
   background-image: url(../assets/fondo-project.jpg);
   height: 90vh;
@@ -962,6 +975,19 @@ header nav a:hover {
   width: 20%;
   border-radius: 5px;
   border: 0;
+}
+
+.box-tasacion .body-list .box-btn .btn-guardarT .btn-cancelarLink, .box-tasacion .body-list .box-btn .btn-cancelar .btn-cancelarLink {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 15px;
+  background-color: #009AD2;
+  height: 35px;
+  width: 30%;
+  border-radius: 5px;
+  border: 0;
+  text-decoration: none;
 }
 
 .box-tasacion .body-list .btn-newTasacion {

@@ -1,7 +1,7 @@
 import React, {useState}from 'react';
 import Header from '../Header';
 import { postTasacion } from '../../controller/tasaciones'
-
+import { Link } from 'react-router-dom';
 
 const Tasacion = () => {
     
@@ -238,7 +238,7 @@ const Tasacion = () => {
                     </table>
                     <div className="box-btn"> 
                         <button className="btn-guardarT" onClick={handleRequestTasacion}>Guardar Tasacion </button>
-                        <button className="btn-cancelar">Cancelar</button>
+                        <button className="btn-cancelar"><Link className="btn-cancelarLink"to="/home/proyectos">Cancelar</Link> </button>
                     </div>
                 </div> 
         
