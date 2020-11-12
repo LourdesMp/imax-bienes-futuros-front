@@ -36,22 +36,17 @@ const Register = () => {
   }
 
   const isFormValid = () => {
-    // const notValidEmail = email.trim() !== /^[a-zA-Z][-_.a-zA-Z0-9]{5,29}@imax.com.pe$/;
-    // const exRegEmail = /^[a-zA-Z][-_.a-zA-Z0-9]{5,29}@imax.com.pe$/;
-    // var validEmail = new RegExp("^[a-zA-Z][-_.a-zA-Z0-9]{5,29}@imax.com.pe$");
-    // var result = validEmail.slice(1, -1); 
-    // console.log(validEmail)
-    // console.log(result)
+    var validEmail = new RegExp("^[a-zA-Z][-_.a-zA-Z0-9]{5,29}@imax.com.pe$");
 
-      if (email.trim() === '') {
+      if (( validEmail.test(email.trim())) === false) {
         console.log(email.trim())
         dispatch ( setError ('el dominio del correo es incorrecto'));
         return false;
       }
-      // else if () {
-      //   dispatch ( setError ('ingrese su email'));
-      //   return false;
-      // }
+      else if (email.trim() === '') {
+        dispatch ( setError ('ingrese su email'));
+        return false;
+      }
       else if (password.trim() === '') {
         dispatch ( setError ('ingrese su password'));
         return false;
