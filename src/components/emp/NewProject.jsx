@@ -88,7 +88,7 @@ const NewProject = () => {
         //   else setError((prevState) => ({ ...prevState, tasacion: false }));
         // } else {
           var formData = new FormData();
-          formData.append('idProyecto',project.projectData.idProyecto);
+          
            formData.append('nombreProyecto',project.projectData.nombreProyecto);
            formData.append('promotor',project.projectData.promotor);
            formData.append('banco',project.projectData.banco);
@@ -110,17 +110,24 @@ const NewProject = () => {
             tasacion: project.projectData.tasacion
           };*/
           // console.log(projectObj)
-          postProject(formData).then((resp) => {
-            setProject((prevState) => ({
-              ...prevState,
-              DataProjects: [...project.DataProjects, resp],
-            }));
-           alert ('Proyecto ingresado correctamente')
-           goListProjects()
-          }).catch((err) => {
-            return err
-          });
-       // } 
+          getLastId().then((resp)=> {
+            console.log(resp.DataProjects[0])
+            formData.append('idProyecto',resp.DataProjects[0].LastID);  
+            postProject(formData).then((resp) => {
+              setProject((prevState) => ({
+                ...prevState,
+                DataProjects: [...project.DataProjects, resp],
+              }));
+             alert ('Proyecto ingresado correctamente')
+             goListProjects()
+            }).catch((err) => {
+              return err
+            });
+         // } 
+
+
+          } );
+        
       };
 
     //   useEffect(() => {
@@ -169,7 +176,7 @@ const NewProject = () => {
             <div className="box-newProject">
                 <p className="title">Datos del Proyecto</p>
                 <div className="box-user"> 
-                    <input name="idProyecto" type="hidden" onChange={handleInputChange} 
+                    <input name="idProyecto" type="text" onChange={handleInputChange} 
                     defaultValue={project.projectData.idProyecto}
                      placeholder='Campo requerido'
                      className= 'nombre error' 
