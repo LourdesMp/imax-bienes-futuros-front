@@ -74,6 +74,7 @@ const ListProjects = ({project, setProject}) => {
                         <button className="btn-search">Buscar </button>
                         </div>
                     </div>  */}
+                    <div className="roll-table">
                     <table className="table-list">
                         <thead>
                             <tr>
@@ -107,6 +108,9 @@ const ListProjects = ({project, setProject}) => {
                         }  
                         </tbody>
                     </table>
+                        
+                         </div>
+                    
                     <Link className="btn-newTasacion"  to="/home/newProject">Nuevo Proyecto</Link>
                 </div> 
             

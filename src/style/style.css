@@ -587,7 +587,7 @@ header nav a:hover {
 .box-bodyList .box-listProjects .body-list {
   background: rgba(225, 249, 241, 0.83);
   width: 98%;
-  height: 95%;
+  height: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -644,13 +644,31 @@ header nav a:hover {
   border: 0;
 }
 
-.box-bodyList .box-listProjects .body-list .table-list {
+.box-bodyList .box-listProjects .body-list .roll-table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 85%;
+  overflow: auto;
+}
+
+.box-bodyList .box-listProjects .body-list .roll-table .table-list {
   background: #FAFAFA;
   width: 98%;
   margin: 1%;
+  overflow: auto;
 }
 
-.box-bodyList .box-listProjects .body-list .table-list th {
+.box-bodyList .box-listProjects .body-list .roll-table .table-list th {
   padding-top: 5px;
   padding-bottom: 5px;
   text-align: center;
@@ -658,7 +676,7 @@ header nav a:hover {
   color: black;
 }
 
-.box-bodyList .box-listProjects .body-list .table-list td {
+.box-bodyList .box-listProjects .body-list .roll-table .table-list td {
   padding-top: 5px;
   padding-bottom: 5px;
   text-align: center;

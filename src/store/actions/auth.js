@@ -30,7 +30,6 @@ export const login= (payload) => ({
 
 //funcion para login
 export const startLoginEmailPassword = (email, password) => {
-
     return (dispatch ) => {
         dispatch(loginLoading())
         firebase.auth().signInWithEmailAndPassword ( email, password) 

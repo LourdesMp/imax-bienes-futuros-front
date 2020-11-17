@@ -88,7 +88,6 @@ const NewProject = () => {
         //   else setError((prevState) => ({ ...prevState, tasacion: false }));
         // } else {
           var formData = new FormData();
-          
            formData.append('nombreProyecto',project.projectData.nombreProyecto);
            formData.append('promotor',project.projectData.promotor);
            formData.append('banco',project.projectData.banco);
@@ -176,7 +175,7 @@ const NewProject = () => {
             <div className="box-newProject">
                 <p className="title">Datos del Proyecto</p>
                 <div className="box-user"> 
-                    <input name="idProyecto" type="text" onChange={handleInputChange} 
+                    <input name="idProyecto" type="hidden" onChange={handleInputChange} 
                     defaultValue={project.projectData.idProyecto}
                      placeholder='Campo requerido'
                      className= 'nombre error' 

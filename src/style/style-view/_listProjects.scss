@@ -66,7 +66,7 @@
         .body-list{
             background: rgba(225, 249, 241, 0.83);
             width: 98%;
-            height: 95%;
+            height: 90%;
             display: flex;
             flex-direction: column;
             padding: 1%;
@@ -75,6 +75,7 @@
                 display: flex;
                 flex-direction: column;
                 margin: 10px;
+        
                 p{
                     margin: 10px 0;
                 }
@@ -103,25 +104,37 @@
                 }
 
             }
-            .table-list{
-                background:  #FAFAFA;
-                width: 98%;
-                margin: 1%;
-                th{
-                    padding-top: 5px;
-                    padding-bottom: 5px;
-                    text-align: center;
-                    background-color: #E5E5E5;
-                    color: black;
-                }
+            .roll-table{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                height: 85%;
+                overflow: auto;
 
-                td{
-                    padding-top: 5px;
-                    padding-bottom: 5px;
-                    text-align: center;
-                    color: black;
+                .table-list{
+                    background:  #FAFAFA;
+                    width: 98%;
+                    // height: 85%;
+                    margin: 1%;
+                    overflow: auto;
+                    th{
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                        text-align: center;
+                        background-color: #E5E5E5;
+                        color: black;
+                    }
+                        td{
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            text-align: center;
+                            color: black;
+                        }
+               
                 }
             }
+        
 
             .btn-newTasacion{
                 color: #fff;
