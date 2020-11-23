@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Redirect
 } from 'react-router-dom';
 
-import {useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {firebase} from '../firebase-config';
+import { firebase } from '../firebase-config';
 import { AuthRouter } from './AuthRouter';
 import { PrivateRoute } from './PrivateRouter';
-import {PublicRoute} from './PublicRoute';
+import { PublicRoute } from './PublicRoute';
 
 
-import { login } from '../store/actions/auth';
+import { loginSuccess, startLogout} from '../store/actions/auth';
 import { DashboardRouters } from './DashboardRouters';
 
 
@@ -21,51 +21,68 @@ import { DashboardRouters } from './DashboardRouters';
 
 
 export const AppRouter = () => {
-  
+
   const dispatch = useDispatch();
 
+  const {
+    isLoading,
+    isSuccess,
+    isError,
+    data,
+    error
+  } = useSelector(state => state.authReducer.user);
+  console.log(data);
+
   //estados que permitiran diferenciar entre usuario logeado o no para vizualisacion de las rutas
-  const [ checking, setChecking ] = useState(true);
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const [checking, setChecking] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
 
   useEffect(() => {
-      
-      firebase.auth().onAuthStateChanged( (user) => {
 
-          if ( user?.uid ) {
-              dispatch( login( user.uid, user.displayName ) );
-              setIsLoggedIn (true);
-          
-          } else {
-           console.log('hola');
-           setIsLoggedIn (false);
-          }
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user?.uid) {
+        dispatch(loginSuccess({
+          email: user.email,
+          uid: user.uid
+        }));
 
-          setChecking(false);
+      } else {
+        startLogout();
 
-      });
-      
-  }, [ dispatch, setChecking, setIsLoggedIn]);
+      }
 
-  if ( checking ) {
+      setChecking(false);
+
+
+    });
+
+  }, []);
+
+  // useEffect(() => {
+  //   dispatch(checkingUser())
+  // //  const user  = firebase.auth().currentUser
+  // //  console.log(user)
+  // }, [])
+
+  if (checking) {
     return (
-        <h1>Espere...</h1>
+      <h1>Espere...</h1>
     )
-}
+  }
 
-  return(
+  return (
     //uso de router para poder alternar los componentes quee comforman las vistas en rutas publicas y privadas
 
     <Router>
       <div className="container">
         <Switch>
-          <PublicRoute path="/"  isAuthenticated={isLoggedIn} component = {AuthRouter} exact />
-          <PublicRoute path="/register"  isAuthenticated={isLoggedIn} component = {AuthRouter} exact />
-          <PrivateRoute  path="/home"   isAuthenticated={isLoggedIn}   component = {DashboardRouters}  />
+          <PublicRoute path="/" isAuthenticated={isSuccess} component={AuthRouter} exact />
+          <PublicRoute path="/register" isAuthenticated={isSuccess} component={AuthRouter} exact />
+          <PrivateRoute path="/home" isAuthenticated={isSuccess} component={DashboardRouters} />
 
-          <Redirect to="/"/>
+          <Redirect to="/" />
         </Switch>
       </div>
     </Router>
