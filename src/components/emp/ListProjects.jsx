@@ -95,7 +95,7 @@ const ListProjects = ({project, setProject}) => {
                                     <td>{element.nombreProyecto}</td>
                                     <td>{element.promotor}</td>
                                     <td>{element.banco}</td>
-                                    <td><Link to="/home/newtasacion"><i class="user-tasacion far fa-file-excel"></i></Link></td>
+                                    <td><Link to="/home/newtasacion"><i className="user-tasacion far fa-file-excel"></i></Link></td>
                                     <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i></td>
                                     <td><i className="user-upload fas fa-upload"></i><i className="user-down fas fa-download"></i><i className="user-remove far fa-trash-alt"></i></td>
                                 </tr>
