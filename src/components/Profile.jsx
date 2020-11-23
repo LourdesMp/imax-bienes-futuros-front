@@ -65,7 +65,7 @@ const Profile = () => {
             <div className="box-profile">
                 <p className="title">Perfil del usuario</p>
                 <div className="box-user"> <label>Nombre: </label> <input className="user" name="nombre" type="text" required/>  </div> 
-                <div className="box-user"> <label>Email: </label> <input className="user" value={profile.profileData.email} type="email" required onChange={handleProfileChange} />  </div>  
+                <div className="box-user"> <label>Email: </label> <input className="user"  readonly="readonly" value={profile.profileData.email} type="email" required onChange={handleProfileChange} />  </div>  
                 <div className="box-user"> <label>Password Nueva: </label> <input className="user"  type="password"  required/>  </div>   
                 <div className="box-user"> <label>Confirmar Password: </label> <input className="user" type="password"  required/>  </div>          
                 <div className="box-btn">
