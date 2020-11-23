@@ -38,7 +38,7 @@ const Profile = () => {
         isError,
         data,
         error
-    } = useSelector ( state => state.authReducer.login);
+    } = useSelector ( state => state.authReducer.user);
 
     // useEffect(() => {
     //     if(isSuccess){
