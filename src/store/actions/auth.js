@@ -11,32 +11,57 @@ export const LOGIN_LOADING = 'LOGIN_LOADING'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_ERROR = 'LOGIN_ERROR'
 
+export const LOGOUT = 'LOGOUT'
+
 //CREACION DE ACCIONES
 const postUsersLoading = () => ({type:POSTUSERS_LOADING})
 const postUsersuccess= (payload) => ({type:POSTUSERS_SUCCESS, payload})
 const postUsersError = (payload) => ({type:POSTUSERS_ERROR, payload})
 
 
-const loginLoading = () => ({type:LOGIN_LOADING})
-const loginSuccess= (payload) => ({type:LOGIN_SUCCESS, payload})
-const loginError = (payload) => ({type:LOGIN_ERROR, payload})
+export const loginLoading = () => ({type:LOGIN_LOADING})
+export const loginSuccess= (payload) => ({type:LOGIN_SUCCESS, payload})
+export const loginError = (payload) => ({type:LOGIN_ERROR, payload})
+
+export const logout = ()=> ({
+    type: LOGOUT
+});
 
 //funcion que nos devuelve uid y name del usuario
-export const login= (payload) => ({
-    type : types.login,
-    payload
-});
+// export const login= (payload) => ({
+//     type : types.login,
+//     payload
+// });
+
+  // useEffect(() => {
+      
+  //     firebase.auth().onAuthStateChanged( (user) => {
+
+  //         if ( user?.uid ) {
+  //             dispatch( login( user.uid, user.displayName ) );
+  //             setIsLoggedIn (true);
+          
+  //         } else {
+  //          console.log('hola');
+  //          setIsLoggedIn (false);
+  //         }
+
+  //         setChecking(false);
+
+  //     });
+      
+  // }, [ dispatch, setChecking, setIsLoggedIn]);
 
 
 //funcion para login
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch ) => {
         dispatch(loginLoading())
-        firebase.auth().signInWithEmailAndPassword ( email, password) 
+        firebase.auth().signInWithEmailAndPassword( email, password) 
       .then( (response) => {
           const user = {
               email: response.user.email,
-              uid: response.user.email
+              uid: response.user.uid
           }
         //  user.updateProfile(user)
         console.log('response', response)
@@ -57,8 +82,12 @@ export const startRegisterWithEmailPassword =( email, password) =>  async  (disp
     dispatch(postUsersLoading())
     // const user = getState().authReducer;
     try {
-        const response = await firebase.auth().createUserWithEmailAndPassword ( email, password) 
-        const user = response.user
+        const response = await firebase.auth().createUserWithEmailAndPassword(email, password) 
+        const user = {
+            email: response.user.email,
+            uid: response.user.uid
+        }
+        // const user = response.user
         const saveUser = await db.collection('usuarios').doc(email).set({
             userUid: user.uid,
             emailUser: user.email
@@ -77,11 +106,7 @@ export const startRegisterWithEmailPassword =( email, password) =>  async  (disp
 export const startLogout = () => {
     return async (dispatch) => {
        await firebase.auth().signOut();
-
        dispatch( logout());
     }
 };
 
-export const logout = ()=> ({
-    type: types.logout
-});
