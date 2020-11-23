@@ -1,3 +1,6 @@
+$ligthBlue: #009AD2;
+$front-rob:'Roboto', sans-serif;
+
 .box-profile{
     display: flex;
     flex-direction: column;
@@ -7,7 +10,7 @@
     width: 45%;
     height: 60%;
     padding: 15px;
-    font-family: 'Roboto', sans-serif;
+    font-family: $front-rob;
     margin-bottom: 30px;
     
    
@@ -58,7 +61,7 @@
             font-size: 1.2rem;
             font-weight: 500;
             margin-top: 15px;
-            background-color: #009AD2;
+            background-color: $ligthBlue;
             height: 35px;
             width: 30%;
             border-radius: 5px;
@@ -69,7 +72,7 @@
                 font-size: 1.2rem;
                 font-weight: 500;
                 margin-top: 15px;
-                background-color: #009AD2;
+                background-color: $ligthBlue;
                 height: 35px;
                 width: 30%;
                 border-radius: 5px;

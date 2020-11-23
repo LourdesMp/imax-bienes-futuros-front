@@ -1,3 +1,4 @@
+$front-rob:'Roboto', sans-serif;
 .login{
     background-image: url(../assets/fondo-login.jpg);
     height: 100vh;
@@ -72,7 +73,7 @@
 
         .btn-login{
             color: #fff;
-            font-family: 'Roboto', sans-serif;
+            font-family: $front-rob;
             font-size: 1.3rem;
             margin: 15px;
             background-color: #00AFEF;
@@ -87,7 +88,7 @@
             box-sizing: content-box;
             font-size: 15px;
             color: #0C0B2D;
-            font-family: 'Roboto', sans-serif;
+            font-family: $front-rob;
         }
     }
 }

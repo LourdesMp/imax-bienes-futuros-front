@@ -1,5 +1,8 @@
+$blueHome:#225075;
+$front-rob:'Roboto', sans-serif;
+
 header{
-    background: #225075;
+    background: $blueHome;
     height: 10vh;
     display: flex; 
     justify-content: space-between;
@@ -26,7 +29,7 @@ header{
     font-weight:700;
     color: #ffffff;
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: $front-rob;
     display:block;
 
     
@@ -58,8 +61,8 @@ nav li:hover ul{
 
 header nav a:hover{
     background: rgba(98, 151, 190, 0.8);
-border: 1px solid rgba(0, 0, 0, 0.3);
-box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
 }
 
 .box-body{
@@ -77,7 +80,7 @@ box-sizing: border-box;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        font-family: 'Roboto', sans-serif;
+        font-family: $front-rob;
         background: rgba(0,0,0,.55);
         width: 40%;
         height: 40%;

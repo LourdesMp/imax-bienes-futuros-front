@@ -1,3 +1,8 @@
+$ligthBlue: #009AD2;
+$front-rob:'Roboto', sans-serif;
+
+
+
 .box-bodyList{
     background-image: url(../assets/fondo-project.jpg);
     height: 90vh;
@@ -13,7 +18,7 @@
         flex-direction: column;
         width: 90%;
         height: 85%;
-        font-family: 'Roboto', sans-serif;
+        font-family: $front-rob;
         .user-tasacion{
             background: rgb(66, 123, 197);
             margin-right: 5px;
@@ -94,7 +99,7 @@
                         color: #fff;
                         font-size: 1.0rem;
                         font-weight: 500;
-                        background-color: #009AD2;
+                        background-color: $ligthBlue;
                         height: 25px;
                         margin-left: 50px;
                         width: 10%;
@@ -140,7 +145,7 @@
                 color: #fff;
                 font-size: 1.3rem;
                 font-weight: 500;
-                background-color: #009AD2;
+                background-color: $ligthBlue;
                 height: 35px;
                 margin-left: 40%;
                 width: 20%;
