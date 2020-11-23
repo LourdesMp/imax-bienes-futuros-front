@@ -5,19 +5,12 @@ import {
     POSTUSERS_ERROR,
     LOGIN_LOADING,
     LOGIN_SUCCESS,
-    LOGIN_ERROR
+    LOGIN_ERROR,
+    LOGOUT
 } from '../actions/auth';
 
 const initialState = {
-    post: {
-        isLoading : false,
-        isSuccess : false,
-        isError: false,
-        data : {},
-        error : null
-    },
-    user: {},
-    login: {
+    user: {
         isLoading : false,
         isSuccess : false,
         isError: false,
@@ -32,7 +25,7 @@ const authReducer = (state=initialState, action) => {
         case POSTUSERS_LOADING:
             return {
                 ...state, 
-                post: {
+                user: {
                     isLoading : true,
                     isSuccess : false,
                     isError: false,
@@ -44,7 +37,7 @@ const authReducer = (state=initialState, action) => {
         case POSTUSERS_SUCCESS:
             return{
                 ...state, 
-                post: {
+                user: {
                     isLoading : false,
                     isSuccess : true,
                     isError: false,
@@ -57,7 +50,7 @@ const authReducer = (state=initialState, action) => {
         case POSTUSERS_ERROR:
             return{
                 ...state, 
-                post: {
+                user: {
                     isLoading : false,
                     isSuccess : false,
                     isError: true,
@@ -65,17 +58,10 @@ const authReducer = (state=initialState, action) => {
                     error : action.payload
                 }
             }
-        case types.login:
-            return {
-                ...state, 
-                user: action.payload,
-            }
-        case types.logout:
-            return {    };
         case LOGIN_LOADING:
             return {
                 ...state, 
-                login: {
+               user: {
                     isLoading : true,
                     isSuccess : false,
                     isError: false,
@@ -87,7 +73,7 @@ const authReducer = (state=initialState, action) => {
         case LOGIN_SUCCESS:
             return{
                 ...state, 
-                login: {
+                user: {
                     isLoading : false,
                     isSuccess : true,
                     isError: false,
@@ -100,14 +86,25 @@ const authReducer = (state=initialState, action) => {
         case LOGIN_ERROR:
             return{
                 ...state, 
-                login: {
+                user: {
                     isLoading : false,
                     isSuccess : false,
                     isError: true,
                     data : {},
                     error : action.payload
                 }
-            }     
+            }   
+        case LOGOUT:
+            return{
+                ...state,
+            user: {
+                isLoading : false,
+                isSuccess : false,
+                isError: false,
+                data : {},
+                error : null
+            }    
+            }      
         default:
             return state
     }
