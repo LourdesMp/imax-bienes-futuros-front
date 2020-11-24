@@ -74,6 +74,8 @@ const NewProject = () => {
       });
     }
 
+
+      var formData = new FormData();
       const handleRequestProject = () => {
         // const validName = project.projectData.nombreProyecto.trim() === '';
         // const validMatriz =project.projectData.matriz === '';
@@ -87,7 +89,8 @@ const NewProject = () => {
         //   if (validTasacion) setError((prevState) => ({ ...prevState, tasacion: true }));
         //   else setError((prevState) => ({ ...prevState, tasacion: false }));
         // } else {
-          var formData = new FormData();
+         console.log(project.projectData.idProyecto);
+           formData.append('idProyecto', project.projectData.idProyecto);
            formData.append('nombreProyecto',project.projectData.nombreProyecto);
            formData.append('promotor',project.projectData.promotor);
            formData.append('banco',project.projectData.banco);
@@ -109,9 +112,9 @@ const NewProject = () => {
             tasacion: project.projectData.tasacion
           };*/
           // console.log(projectObj)
-          getLastId().then((resp)=> {
-            console.log(resp.DataProjects[0])
-            formData.append('idProyecto',resp.DataProjects[0].LastID);  
+         
+            // console.log(resp.DataProjects[0])
+                
             postProject(formData).then((resp) => {
               setProject((prevState) => ({
                 ...prevState,
@@ -123,48 +126,31 @@ const NewProject = () => {
               return err
             });
          // } 
-
-
-          } );
         
       };
 
+
+      
+      // getLastId().then((resp)=> {
+      //   formData.append('idProyecto',resp.DataProjects[0].LastID);
+      // });
+
     //   useEffect(() => {
-    //     getLastId().then((resp) => setProject((prevState) => ({
-    //       ...prevState,
-    //       projectData: {
-    //         ...project.projectData,
-    //         idProyecto : resp.DataProjects[0].LastID
-    //       }
-    //     } )));
+    //     getLastId().then((resp)=> {
+    //     formData.append('idProyecto',resp.DataProjects[0].LastID);
+    //   });
     // }, []);
 
-    // const {
-    //   isLoading,
-    //   isSuccess,
-    //   isError,
-    //   data,
-    //   error
-    // } = useSelector ( state => state.projectsReducer.get);
-
-    // useEffect(() => {
-    //   dispatch(getProject())
-    //  }, [])
-
-    // const closeModal = () => {
-    //   setProject((prevState) => ({
-    //     ...prevState,
-    //     projectData  : {
-    //       idProyecto: '',
-    //       nombreProyecto: '',
-    //       promotor: '',
-    //       banco: 'bcp',
-    //       file: '',
-    //       tasacion: ''
-    //   }}));
-    // };
-  
-
+    useEffect(() => {
+      getLastId().then((resp) => setProject((prevState) => ({
+        ...prevState,
+        projectData: {
+          ...project.projectData,
+          idProyecto : resp.DataProjects[0].LastID
+          
+        }
+      } )));
+  }, []);
 
     
     
